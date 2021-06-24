@@ -40,3 +40,23 @@ const questionsArray = [
         correctAnswer: "d"
     }
 ];
+
+// timer
+
+var secondsLeft = 5;
+function timerFunction() {
+    if(secondsLeft <= 0) {
+        document.getElementById("timer").innerHTML = "Time's up!"
+    } else {
+        document.getElementById("timer").innerHTML = `Time left: ${secondsLeft}`;
+    secondsLeft -= 1;
+    }
+}
+
+var timer = setInterval(timerFunction, 1000);
+
+// function display question 
+
+// function click button
+
+// event listener for buttons
