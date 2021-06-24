@@ -41,18 +41,20 @@ const questionsArray = [
     }
 ];
 
+const mainDiv = document.querySelector("main");
 const questionDiv = document.getElementById("question-div");
 const questionP = document.getElementById("question");
 
 let index = 0;
-let score = 0;
 
 // Timer function
 
 let secondsLeft = 20;
 function timerFunction() {
-    if(secondsLeft <= 0) {
-        document.getElementById("timer").innerHTML = "Time's up!"
+    if (secondsLeft <= 0) {
+        document.getElementById("timer").innerHTML = "Time's up!";
+        secondsLeft = 0;
+        showEndGameForm();
     } else {
         document.getElementById("timer").innerHTML = `Time left: ${secondsLeft}`;
     secondsLeft -= 1;
@@ -65,8 +67,9 @@ var timer = setInterval(timerFunction, 1000);
 
 function clickButton() {
     const currentQuestion = questionsArray[index];
-    if (this.classList.contains(currentQuestion.correctAnswer)) {
-        score++;
+    if (index == questionsArray.length - 1) {
+        showEndGameForm();
+    } else if (this.classList.contains(currentQuestion.correctAnswer)) {
         secondsLeft += 10;
         index++;
         displayQuestion();
@@ -100,6 +103,15 @@ function displayQuestion() {
     questionDiv.append(...buttons);
 }
 
+function showEndGameForm() {
+    mainDiv.textContent = "";
+
+    const h1 = document.createElement("h1");
+    h1.textContent = "Well done!"
+    const p = document.createElement("p");
+    p.textContent = `Your final score is: ${secondsLeft}`;
+    mainDiv.append(h1, p);
+}
 
 displayQuestion();
 
