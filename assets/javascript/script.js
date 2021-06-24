@@ -45,6 +45,7 @@ const questionDiv = document.getElementById("question-div");
 const questionP = document.getElementById("question");
 
 let index = 0;
+let score = 0;
 
 // Timer function
 
@@ -60,18 +61,35 @@ function timerFunction() {
 
 var timer = setInterval(timerFunction, 1000);
 
+// Determine if button clicked was correct answer or not
+
+function clickButton() {
+    const currentQuestion = questionsArray[index];
+    if (this.classList.contains(currentQuestion.correctAnswer)) {
+        score++;
+        secondsLeft += 10;
+        index++;
+        displayQuestion();
+    } else {
+        secondsLeft -= 5;
+    }
+}
+
 // Function to automate creation of buttons
 
 function createButton(currentQuestion, prop) {
-    let button = document.createElement("button");
+    const button = document.createElement("button");
     button.textContent = currentQuestion[prop];
+    button.setAttribute("class", prop);
+    button.addEventListener('click', clickButton);
     return button;
 }
 
 // Function to display question in questionDiv
 
 function displayQuestion() {
-    let currentQuestion = questionsArray[index];
+    questionDiv.textContent = "";
+    const currentQuestion = questionsArray[index];
     questionP.textContent = currentQuestion.question;
     const buttons = [
         createButton(currentQuestion, "a"),
@@ -80,11 +98,8 @@ function displayQuestion() {
         createButton(currentQuestion, "d")
     ];
     questionDiv.append(...buttons);
-    index++;
 }
+
 
 displayQuestion();
 
-// function click button
-
-// event listener for buttons
