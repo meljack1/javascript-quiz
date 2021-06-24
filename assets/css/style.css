@@ -1,0 +1,12 @@
+header {
+    height: 50px;
+    margin: 20px;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-around;
+}
+
+main {
+    text-align: center;
+}
+
