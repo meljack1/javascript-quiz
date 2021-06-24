@@ -41,9 +41,14 @@ const questionsArray = [
     }
 ];
 
-// timer
+const questionDiv = document.getElementById("question-div");
+const questionP = document.getElementById("question");
 
-var secondsLeft = 5;
+let index = 0;
+
+// Timer function
+
+let secondsLeft = 20;
 function timerFunction() {
     if(secondsLeft <= 0) {
         document.getElementById("timer").innerHTML = "Time's up!"
@@ -55,7 +60,30 @@ function timerFunction() {
 
 var timer = setInterval(timerFunction, 1000);
 
-// function display question 
+// Function to automate creation of buttons
+
+function createButton(currentQuestion, prop) {
+    let button = document.createElement("button");
+    button.textContent = currentQuestion[prop];
+    return button;
+}
+
+// Function to display question in questionDiv
+
+function displayQuestion() {
+    let currentQuestion = questionsArray[index];
+    questionP.textContent = currentQuestion.question;
+    const buttons = [
+        createButton(currentQuestion, "a"),
+        createButton(currentQuestion, "b"),
+        createButton(currentQuestion, "c"),
+        createButton(currentQuestion, "d")
+    ];
+    questionDiv.append(...buttons);
+    index++;
+}
+
+displayQuestion();
 
 // function click button
 
