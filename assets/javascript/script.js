@@ -42,10 +42,20 @@ const questionsArray = [
 ];
 
 const mainDiv = document.querySelector("main");
+
+// Questions page
 const questionDiv = document.getElementById("question-div");
 const questionP = document.getElementById("question");
+
+// Score form page
 const scoreForm = document.getElementById("score-form");
 const span = document.getElementById("score-text");
+const nameInput = document.getElementById("leaderboard-input");
+const submitButton = document.getElementById("submit");
+
+// High scores table page
+const tableEl = document.querySelector("table");
+const tableBody = document.querySelector("tbody");
 
 let index = 0;
 
@@ -122,5 +132,80 @@ function showEndGameForm() {
     questionP.textContent = "";
 }
 
+// Get scores from local storage
+
+function getHighscores() {
+    const scores = localStorage.getItem("scores");
+    if(!scores) {
+        return [];
+    }
+    const scoresParsed = JSON.parse(scores);
+    return scoresParsed;
+}
+
+// Add score to local storage
+
+function addHighscore(newScore) {
+    const scores = getHighscores();
+    scores.push(newScore);
+    localStorage.setItem("scores", JSON.stringify(scores));
+}
+
+// Constructor function to create score objects
+
+function Score(name, score) {
+    this.name = name,
+    this.score = score
+}
+
+// Creates new score object based on current time left and name entered
+
+function createNewScore(event) {
+    event.preventDefault();
+    // If no name input, send error message
+    if (!nameInput.value) {
+        alert("Please enter your name!");
+        return;
+    };
+    // Otherwise, add new score
+    const name = nameInput.value.trim();
+    const newScore = new Score(name, secondsLeft);
+    addHighscore(newScore);
+
+    scoreForm.classList.add("hidden");
+    tableEl.classList.remove("hidden");
+    displayHighscores();
+}
+
+
+
+// Displays high scores in highscore table 
+
+function createScoreEntry(newScore, prop) {
+    let td = document.createElement("td");
+    td.textContent = newScore[prop];
+    return td;
+}
+
+
+function displayHighscores() {
+    const scores = getHighscores();
+    tableBody.textContent = "";
+    for (let i = 0; i < scores.length; i++) {
+        let scoreEntry = document.createElement("tr");
+        tableBody.appendChild(scoreEntry);
+        const newScore = scores[i];
+        const entries = [
+            createScoreEntry(newScore, "name"),
+            createScoreEntry(newScore, "score")
+        ];
+        // Turns entries array into comma separated values
+        scoreEntry.append(...entries);
+    }
+}
+
 displayQuestion();
+displayHighscores();
+
+submitButton.addEventListener("click", createNewScore);
 

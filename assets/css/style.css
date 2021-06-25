@@ -33,8 +33,9 @@ button {
     cursor: pointer;
 }
 
+
 .hidden {
-    visibility: hidden; 
+    display: none;
 }
 
 #leaderboard-input {
@@ -58,4 +59,46 @@ button {
     background-color: #F0F4EF;
     color: #344966;
     cursor: pointer;
+}
+
+h1 {
+    font-size: 150%;
+}
+
+table {
+    width: 95%;
+    margin: auto;
+    margin-bottom: 100px;
+}
+
+th {
+    padding: 12px 15px;
+    font-size: 110%;
+}
+
+td {
+    padding: 12px 15px;
+    font-size: 120%;
+}
+
+th:first-child, td:first-child {
+    padding-left: 0; 
+}
+th:last-child, td:last-child {
+    padding-right: 0; 
+} 
+
+@media only screen and (min-width: 720px) {
+    h1 {
+        font-size: 200%;
+    }
+    table {
+        width: 60%;
+    }
+    th {
+        font-size: 150%;
+    }
+    td {
+        font-size: 120%;
+    }
 }
