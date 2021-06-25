@@ -62,9 +62,11 @@ button {
 
 #leaderboard-input {
     display: block;
-    margin: 10px auto;
+    margin: 20px auto;
     padding: 15px;
     height: 40px;
+    width: 80%;
+    max-width: 350px;
     background-color: #f0f4ef;
     border-radius: 15px 0px 15px 0px;
 }
@@ -85,6 +87,11 @@ button {
 
 h1 {
     font-size: 150%;
+    margin: 20px;
+}
+
+p {
+    margin: 20px;
 }
 
 table {
@@ -111,6 +118,9 @@ th:last-child, td:last-child {
 } 
 
 @media only screen and (min-width: 720px) {
+    * {
+        font-size: 24px;
+    }
     h1 {
         font-size: 200%;
     }
