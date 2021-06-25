@@ -97,6 +97,7 @@ function clickButton() {
         displayQuestion();
     } else {
         secondsLeft -= 5;
+        this.classList.add("red");
     }
 }
 

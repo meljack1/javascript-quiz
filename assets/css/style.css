@@ -38,6 +38,24 @@ button {
     display: none;
 }
 
+.red {
+    animation-name: red-animation;
+    animation-duration: 1s;
+    background-color: rgb(151, 0, 0);
+    color: #F0F4EF;
+}
+
+@keyframes red-animation {
+    from {
+        background-color: #F0F4EF;
+        color: #344966;
+    }
+    to {
+        background-color: rgb(151, 0, 0);
+        color: #F0F4EF;
+    }
+}
+
 #highscores { 
     cursor: pointer;
 }
