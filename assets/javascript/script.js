@@ -55,8 +55,10 @@ const nameInput = document.getElementById("leaderboard-input");
 const submitButton = document.getElementById("submit");
 
 // High scores table page
-const tableEl = document.querySelector("table");
+const highscoresDiv = document.getElementById("highscores-div");
 const tableBody = document.querySelector("tbody");
+const clearButton = document.getElementById("clear-button");
+const restartButton = document.getElementById("restart-button");
 
 let index = 0;
 
@@ -171,7 +173,7 @@ function createScoreEntry(newScore, prop) {
 function displayHighscores() {
     const scores = getHighscores();
     tableBody.textContent = "";
-    tableEl.classList.remove("hidden");
+    highscoresDiv.classList.remove("hidden");
     for (let i = 0; i < scores.length; i++) {
         let scoreEntry = document.createElement("tr");
         tableBody.appendChild(scoreEntry);
@@ -212,8 +214,15 @@ function viewScores() {
     displayHighscores();
 }
 
+// Delete button for high scores
+
+function clearHighscores() {
+    localStorage.clear();
+    displayHighscores();
+}
+
 displayQuestion();
 
-highscoresEl.addEventListener("click", viewScores)
+highscoresEl.addEventListener("click", viewScores);
 submitButton.addEventListener("click", createNewScore);
-
+clearButton.addEventListener("click", clearHighscores);
