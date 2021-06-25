@@ -38,6 +38,10 @@ button {
     display: none;
 }
 
+#highscores { 
+    cursor: pointer;
+}
+
 #leaderboard-input {
     display: block;
     margin: 10px auto;

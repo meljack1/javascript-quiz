@@ -44,6 +44,7 @@ const questionsArray = [
 const mainDiv = document.querySelector("main");
 
 // Questions page
+const highscoresEl = document.getElementById("highscores");
 const questionDiv = document.getElementById("question-div");
 const questionP = document.getElementById("question");
 
@@ -158,6 +159,32 @@ function Score(name, score) {
     this.score = score
 }
 
+// Displays high scores in highscore table 
+
+function createScoreEntry(newScore, prop) {
+    let td = document.createElement("td");
+    td.textContent = newScore[prop];
+    return td;
+}
+
+
+function displayHighscores() {
+    const scores = getHighscores();
+    tableBody.textContent = "";
+    tableEl.classList.remove("hidden");
+    for (let i = 0; i < scores.length; i++) {
+        let scoreEntry = document.createElement("tr");
+        tableBody.appendChild(scoreEntry);
+        const newScore = scores[i];
+        const entries = [
+            createScoreEntry(newScore, "name"),
+            createScoreEntry(newScore, "score")
+        ];
+        // Turns entries array into comma separated values
+        scoreEntry.append(...entries);
+    }
+}
+
 // Creates new score object based on current time left and name entered
 
 function createNewScore(event) {
@@ -173,39 +200,20 @@ function createNewScore(event) {
     addHighscore(newScore);
 
     scoreForm.classList.add("hidden");
-    tableEl.classList.remove("hidden");
     displayHighscores();
 }
 
+// Displays high scores when you click the high score button
 
-
-// Displays high scores in highscore table 
-
-function createScoreEntry(newScore, prop) {
-    let td = document.createElement("td");
-    td.textContent = newScore[prop];
-    return td;
-}
-
-
-function displayHighscores() {
-    const scores = getHighscores();
-    tableBody.textContent = "";
-    for (let i = 0; i < scores.length; i++) {
-        let scoreEntry = document.createElement("tr");
-        tableBody.appendChild(scoreEntry);
-        const newScore = scores[i];
-        const entries = [
-            createScoreEntry(newScore, "name"),
-            createScoreEntry(newScore, "score")
-        ];
-        // Turns entries array into comma separated values
-        scoreEntry.append(...entries);
-    }
+function viewScores() {
+    questionDiv.textContent = "";
+    questionP.textContent = "";
+    stopTimer();
+    displayHighscores();
 }
 
 displayQuestion();
-displayHighscores();
 
+highscoresEl.addEventListener("click", viewScores)
 submitButton.addEventListener("click", createNewScore);
 
