@@ -44,6 +44,8 @@ const questionsArray = [
 const mainDiv = document.querySelector("main");
 const questionDiv = document.getElementById("question-div");
 const questionP = document.getElementById("question");
+const scoreForm = document.getElementById("score-form");
+const span = document.getElementById("score-text");
 
 let index = 0;
 
@@ -57,8 +59,15 @@ function timerFunction() {
         showEndGameForm();
     } else {
         document.getElementById("timer").innerHTML = `Time left: ${secondsLeft}`;
-    secondsLeft -= 1;
+        secondsLeft -= 1;
     }
+}
+
+// Stop timer at end of game
+
+function stopTimer() {
+    window.clearInterval(timer);  
+    document.getElementById("timer").innerHTML = `Time left: ${secondsLeft}`;
 }
 
 var timer = setInterval(timerFunction, 1000);
@@ -103,14 +112,14 @@ function displayQuestion() {
     questionDiv.append(...buttons);
 }
 
-function showEndGameForm() {
-    mainDiv.textContent = "";
+// Show the form to submit your score
 
-    const h1 = document.createElement("h1");
-    h1.textContent = "Well done!"
-    const p = document.createElement("p");
-    p.textContent = `Your final score is: ${secondsLeft}`;
-    mainDiv.append(h1, p);
+function showEndGameForm() {
+    stopTimer();
+    span.textContent = secondsLeft;  
+    scoreForm.classList.remove("hidden");
+    questionDiv.textContent = "";
+    questionP.textContent = "";
 }
 
 displayQuestion();
