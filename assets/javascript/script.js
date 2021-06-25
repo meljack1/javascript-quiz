@@ -221,8 +221,20 @@ function clearHighscores() {
     displayHighscores();
 }
 
+// Restart game
+
+function restartGame() {
+    secondsLeft = 20;
+    index = 0;
+    timer = setInterval(timerFunction, 1000);
+    scoreForm.classList.add("hidden");
+    highscoresDiv.classList.add("hidden");
+    displayQuestion();
+}
+
 displayQuestion();
 
 highscoresEl.addEventListener("click", viewScores);
 submitButton.addEventListener("click", createNewScore);
 clearButton.addEventListener("click", clearHighscores);
+restartButton.addEventListener("click", restartGame);
