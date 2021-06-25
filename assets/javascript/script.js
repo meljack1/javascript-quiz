@@ -130,8 +130,8 @@ function displayQuestion() {
 
 function showEndGameForm() {
     stopTimer();
-    span.textContent = secondsLeft;  
     scoreForm.classList.remove("hidden");
+    span.textContent = secondsLeft;  
     questionDiv.textContent = "";
     questionP.textContent = "";
 }
@@ -211,7 +211,7 @@ function createNewScore(event) {
 function viewScores() {
     questionDiv.textContent = "";
     questionP.textContent = "";
-    scoreForm.textContent = "";
+    scoreForm.classList.add("hidden");
     stopTimer();
     displayHighscores();
 }
@@ -228,9 +228,9 @@ function clearHighscores() {
 function restartGame() {
     secondsLeft = 20;
     index = 0;
-    timer = setInterval(timerFunction, 1000);
     scoreForm.classList.add("hidden");
     highscoresDiv.classList.add("hidden");
+    timer = setInterval(timerFunction, 1000);
     displayQuestion();
 }
 
