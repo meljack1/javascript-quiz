@@ -210,6 +210,7 @@ function createNewScore(event) {
 function viewScores() {
     questionDiv.textContent = "";
     questionP.textContent = "";
+    scoreForm.textContent = "";
     stopTimer();
     displayHighscores();
 }
