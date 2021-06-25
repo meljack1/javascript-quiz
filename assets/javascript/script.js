@@ -37,7 +37,7 @@ const questionsArray = [
         b: "var numbers = {1, 2, 3, 4}",
         c: "var numbers = (1, 2, 3, 4)",
         d: "var numbers = <1, 2, 3, 4>",
-        correctAnswer: "d"
+        correctAnswer: "a"
     }
 ];
 
@@ -67,7 +67,7 @@ var timer = setInterval(timerFunction, 1000);
 
 function clickButton() {
     const currentQuestion = questionsArray[index];
-    if (index == questionsArray.length - 1) {
+    if (index == questionsArray.length - 1 && this.classList.contains(currentQuestion.correctAnswer)) {
         showEndGameForm();
     } else if (this.classList.contains(currentQuestion.correctAnswer)) {
         secondsLeft += 10;

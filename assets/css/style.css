@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Signika:wght@500&display=swap');
+
+* {
+    background-color: #BFCC94;
+    color: #0D1821;
+    font-family: "Montserrat";
+    font-size: 20px;
+}
+
 header {
     height: 50px;
     margin: 20px;
-    background: #ffffff;
     display: flex;
     justify-content: space-around;
 }
@@ -10,3 +18,17 @@ main {
     text-align: center;
 }
 
+button {
+    width: 250px;
+    height: 60px;
+    font-size: 16px;
+    display: block;
+    margin: 15px auto;
+    padding: 10px;
+    border-style: solid 3px #344966;
+    border-radius: 15px 0px 15px 0px;
+    background-color: #F0F4EF;
+    color: #344966;
+    box-shadow: 5px 5px 5px #344966;
+    cursor: pointer;
+}
