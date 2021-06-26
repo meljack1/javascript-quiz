@@ -42,6 +42,8 @@ const questionsArray = [
 ];
 
 const mainDiv = document.querySelector("main");
+const startDiv = document.getElementById("start-div");
+const startButton = document.getElementById("start-button");
 
 // Questions page
 const highscoresEl = document.getElementById("highscores");
@@ -61,6 +63,7 @@ const clearButton = document.getElementById("clear-button");
 const restartButton = document.getElementById("restart-button");
 
 let index = 0;
+let timer; 
 
 // Timer function
 
@@ -82,8 +85,6 @@ function stopTimer() {
     window.clearInterval(timer);  
     document.getElementById("timer").innerHTML = `Time left: ${secondsLeft}`;
 }
-
-var timer = setInterval(timerFunction, 1000);
 
 // Determine if button clicked was correct answer or not
 
@@ -114,6 +115,8 @@ function createButton(currentQuestion, prop) {
 // Function to display question in questionDiv
 
 function displayQuestion() {
+    questionDiv.classList.remove("hidden");
+    questionP.classList.remove("hidden");
     questionDiv.textContent = "";
     const currentQuestion = questionsArray[index];
     questionP.textContent = currentQuestion.question;
@@ -223,20 +226,22 @@ function clearHighscores() {
     displayHighscores();
 }
 
-// Restart game
+// Start game
 
-function restartGame() {
+function startGame() {
     secondsLeft = 20;
     index = 0;
+    startDiv.classList.add("hidden");
     scoreForm.classList.add("hidden");
     highscoresDiv.classList.add("hidden");
     timer = setInterval(timerFunction, 1000);
     displayQuestion();
 }
 
-displayQuestion();
 
+
+startButton.addEventListener("click", startGame);
 highscoresEl.addEventListener("click", viewScores);
 submitButton.addEventListener("click", createNewScore);
 clearButton.addEventListener("click", clearHighscores);
-restartButton.addEventListener("click", restartGame);
+restartButton.addEventListener("click", startGame);
