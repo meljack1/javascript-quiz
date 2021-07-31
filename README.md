@@ -9,3 +9,7 @@ https://meljack1.github.io/javascript-quiz/
 ## Screenshot
 
 ![Screenshot of website](./assets/images/screenshot.PNG?raw=true)
+
+## Licence 
+
+This application is licenced with an [MIT Licence](./LICENSE)
